@@ -1,26 +1,20 @@
-# app.py
-
-from flask import Flask, render_template
+from flask import Flask, request
 
 app = Flask(__name__)
 
-# show list
-
+# Rota principal para a página inicial
 @app.route('/')
-def show_list():
-    items = [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-        'Item 5',
-        'Item 6',
-        'Item 7',
-        'Item 8',
-        'Item 9',
-        'Item 10'
-    ]
-    return render_template('list.html', items=items)
+def home():
+    return 'Hello, World! This is a simple Flask app running on Kubernetes.'
+
+# Rota para receber métricas personalizadas
+@app.route('/metrics')
+def custom_metrics():
+    # Exemplo de métrica personalizada (número de vezes que a rota principal foi acessada)
+    metric_value = 1
+    return f'my_custom_metric {metric_value}'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
+
+# test
