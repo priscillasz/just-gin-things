@@ -1,27 +1,26 @@
-# Use a imagem base do Google Cloud SDK
-FROM gcr.io/google.com/cloudsdktool/cloud-sdk:alpine
+ Usar a imagem base do Python
+FROM python:3.9
 
-# Defina a versão do kubectl
+# Define a versão do kubectl
 ARG KUBECTL_VERSION=v1.26.5
 
-# Adicione o kubectl
-RUN gcloud components install kubectl
-
-# Copie o kubectl para a pasta /usr/local/bin/
+# Adicionar o kubectl
 ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
 
-# Defina o diretório de trabalho
+# Diretório de trabalho
 WORKDIR /app
 
-# Instale as dependências do Flask
+# Copiar os arquivos de dependências
 COPY requirements.txt .
+
+# Instalação das dependências do Flask
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copie o código do aplicativo para a imagem
+# Copiar o código do aplicativo para a imagem
 COPY . .
 
-# Exponha a porta em que o aplicativo Flask está sendo executado
+# Expor a porta em que o aplicativo Flask está sendo executado
 EXPOSE 5000
 
 # Comando para iniciar o aplicativo Flask
