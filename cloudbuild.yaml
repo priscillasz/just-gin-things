@@ -27,4 +27,4 @@ steps:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Substitua pela sua zona do GKE
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Substitua pelo nome do seu cluster GKE
 options:
-  logging: NONE
+  logging: LEGACY
