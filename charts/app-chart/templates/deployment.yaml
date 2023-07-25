@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gin-flask-deployment
+spec:
+  replicas: 2 # Número de réplicas (pods) do seu aplicativo
+  selector:
+    matchLabels:
+      app: gin-flask
+  template:
+    metadata:
+      labels:
+        app: gin-flask
+    spec:
+      containers:
+        - name: gin-flask
+          image: gcr.io/pripy-393601/gin-flask:v1.0.0 # Substitua pela imagem Docker do seu aplicativo
+          ports:
+            - containerPort: 5000 # Porta em que o aplicativo Flask está escutando
+          # Defina outras configurações do contêiner, como recursos (CPU, memória), variáveis de ambiente, etc.

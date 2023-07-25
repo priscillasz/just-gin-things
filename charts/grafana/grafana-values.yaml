@@ -1,0 +1,11 @@
+# Exemplo de grafana-values.yaml
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server.namespace.svc.cluster.local # URL do servidor Prometheus
+      access: proxy
+      isDefault: true
