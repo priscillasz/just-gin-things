@@ -15,8 +15,8 @@ steps:
       - 'gin-flask'
       - '--image=gcr.io/pripy-393601/ci-cd-gin:latest'
       - '--platform=gke'
-      - '--region='us-east1'
-      - '--cluster='gin-cluster'
+      - '--region=us-east1'
+      - '--cluster=gin-cluster'
       - '--cluster-location=us-east1'
       - '--allow-unauthenticated'
 options:
