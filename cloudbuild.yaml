@@ -23,5 +23,5 @@ steps:
       - 'deployment.yaml'  # path para o manifesto kubernetes
 options:
   logging: NONE
-substitutions:
-  _KUBECTL_VERSION: v1.26.5
+#substitutions:
+# _KUBECTL_VERSION: v1.26.5
