@@ -21,7 +21,8 @@ steps:
       - 'apply'
       - '-f'
       - 'deployment.yaml'  # path para o manifesto kubernetes
+      - version
 options:
   logging: NONE
-
-  # agora vai?
+substitutions:
+  _KUBECTL_VERSION: v1.26.5
