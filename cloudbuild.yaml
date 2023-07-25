@@ -21,7 +21,6 @@ steps:
       - 'apply'
       - '-f'
       - 'deployment.yaml'  # path para o manifesto kubernetes
-      - version
 options:
   logging: NONE
 substitutions:
