@@ -16,11 +16,14 @@ steps:
       - 'gin-cluster'  # Nome do cluster GKE
       - '--region=us-east1'  # Região do cluster GKE
       - '--project=pripy-393601'  # projeto no GCP
-  - name: 'gcr.io/cloud-builders/kubectl'
+
+  # apply the Kubernetes manifest file
+  - name: 'gcr.io/pripy-393601/ci-cd-gin'  # Use a imagem personalizada do Dockerfile
     args:
       - 'apply'
       - '-f'
       - 'deployment.yaml'  # path para o manifesto kubernetes
+
 options:
   logging: NONE
 substitutions:
