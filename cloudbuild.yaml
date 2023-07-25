@@ -16,13 +16,17 @@ steps:
       - 'gin-cluster'  # Nome do cluster GKE
       - '--region=us-east1'  # Região do cluster GKE
       - '--project=pripy-393601'  # projeto no GCP
+
+  # Add a step to list the contents of the build workspace for troubleshooting
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['ls', '-l']
+
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
       - '-f'
       - 'kubernetes/deployment.yaml'  # path para o manifesto kubernetes
     # Redirecionar a saída para um arquivo de log
-    dir: 'logs'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Substitua pela sua zona do GKE
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Substitua pelo nome do seu cluster GKE
