@@ -20,6 +20,6 @@ steps:
     args:
       - 'apply'
       - '-f'
-      - 'charts/app-chart/templates/deployment.yaml'  # path para o manifesto kubernetes
+      - 'deployment.yaml'  # path para o manifesto kubernetes
 options:
   logging: NONE
