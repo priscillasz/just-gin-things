@@ -7,17 +7,17 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/pripy-393601/ci-cd-gin']
 
-  # deploy it (it's failing)
+  # deploy it to GKE
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
-      - 'run'
-      - 'deploy'
-      - 'gin-flask'
-      - '--image=gcr.io/pripy-393601/ci-cd-gin:latest'
-      - '--platform=gke'
-      - '--region=us-east1'
-      - '--cluster=gin-cluster'
-      - '--cluster-location=us-east1'
-      - '--allow-unauthenticated'
-options:
-  logging: NONE
+      - 'container'
+      - 'clusters'
+      - 'get-credentials'
+      - 'gin-cluster'  # Nome do cluster GKE
+      - '--region=us-east1'  # Região do cluster GKE
+      - '--project=pripy-393601'  # projeto no GCP
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'charts/app-chart/templates/deployment.yaml'  # path para o manifesto kubernetes
