@@ -20,11 +20,11 @@ steps:
     args:
       - 'apply'
       - '-f'
-      - 'deployment.yaml'  # path para o manifesto kubernetes
+      - 'kubernetes/deployment.yaml'  # path para o manifesto kubernetes
     # Redirecionar a saída para um arquivo de log
     dir: 'logs'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Substitua pela sua zona do GKE
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Substitua pelo nome do seu cluster GKE
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: CLOUD_LOGGING_ONLY 
