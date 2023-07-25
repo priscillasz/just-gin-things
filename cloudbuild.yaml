@@ -21,3 +21,5 @@ steps:
       - 'apply'
       - '-f'
       - 'charts/app-chart/templates/deployment.yaml'  # path para o manifesto kubernetes
+options:
+  logging: NONE
