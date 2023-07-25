@@ -23,3 +23,5 @@ steps:
       - 'deployment.yaml'  # path para o manifesto kubernetes
 options:
   logging: NONE
+
+  # agora vai?
