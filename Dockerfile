@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  Usar a imagem base do Python
+=======
+# Usar a imagem base do Python
+>>>>>>> parent of 77b4dae (update cloudbuild e dockerfile with personalized image)
 FROM python:3.9
 
 # Define a versão do kubectl
