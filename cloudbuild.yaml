@@ -17,9 +17,14 @@ steps:
       - '--region=us-east1'  # Região do cluster GKE
       - '--project=pripy-393601'  # projeto no GCP
 
-   # Add a step to list the contents of the build workspace using 'find'
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['find', '.']
+   # Add a step to list the contents of the build workspace using 'ls' in bash
+  - name: 'gcr.io/cloud-builders/bash'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        ls -al
+        ls -al kubernetes
 
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
