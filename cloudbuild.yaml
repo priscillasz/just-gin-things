@@ -27,5 +27,25 @@ steps:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Substitua pela sua zona do GKE
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Substitua pelo nome do seu cluster GKE
 
+ # Apply Prometheus ConfigMap
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'prometheus-config.yaml'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Replace with your GKE zone
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Replace with your GKE cluster name
+      
+ # Apply Prometheus Deployment
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'prometheus-deployment.yaml'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Replace with your GKE zone
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Replace with your GKE cluster name
+
 options:
   logging: CLOUD_LOGGING_ONLY 
