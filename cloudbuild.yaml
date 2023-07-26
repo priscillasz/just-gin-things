@@ -1,11 +1,11 @@
 steps:
   # build docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/pripy-393601/ci-cd-gin', '.']
+    args: ['build', '-t', 'gcr.io/pripy-393601/gin-flask', '.']  # Change the image tag to "gin-flask"
 
   # push it to gcr
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/pripy-393601/ci-cd-gin']
+    args: ['push', 'gcr.io/pripy-393601/gin-flask']  # Change the image tag to "gin-flask"
 
   # deploy it to GKE
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -17,15 +17,6 @@ steps:
       - '--region=us-east1'  # Região do cluster GKE
       - '--project=pripy-393601'  # projeto no GCP
 
-  # Add a step to list the contents of the build workspace using 'ls' in Alpine image
-  - name: 'alpine:3'
-    entrypoint: 'sh'
-    args:
-      - '-c'
-      - |
-        ls -al
-        ls -al kubernetes
-
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
@@ -35,5 +26,6 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Substitua pela sua zona do GKE
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Substitua pelo nome do seu cluster GKE
+
 options:
   logging: CLOUD_LOGGING_ONLY 
