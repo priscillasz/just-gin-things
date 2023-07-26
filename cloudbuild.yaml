@@ -36,13 +36,15 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Replace with your GKE zone
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Replace with your GKE cluster name
-      
+
  # Apply Prometheus Deployment
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
       - '-f'
       - 'prometheus-deployment.yaml'
+      - '-f'
+      - 'prometheus-service.yaml'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Replace with your GKE zone
       - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Replace with your GKE cluster name
