@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-deployment
+  name: prometheus
 spec:
   replicas: 1
   selector:
@@ -14,19 +14,25 @@ spec:
     spec:
       containers:
         - name: prometheus
-          image: prom/prometheus:latest
+          image: prom/prometheus:v2.30.3  # Update the Prometheus image version
           args:
             - '--config.file=/etc/prometheus/prometheus.yml'
+            - '--storage.tsdb.path=/prometheus'  # Add this line for storage path
           ports:
             - containerPort: 9090
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/prometheus
+            - name: prometheus-data
+              mountPath: /prometheus  # Change the mount path for storage
       volumes:
         - name: prometheus-config
           configMap:
             name: prometheus-config
+        - name: prometheus-data
+          emptyDir: {}  # Use emptyDir for storage
 
+---
 apiVersion: v1
 kind: Service
 metadata:
