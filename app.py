@@ -4,6 +4,7 @@ from prometheus_client import Counter, generate_latest, CollectorRegistry
 app = Flask(__name__)
 
 request_count = Counter('gin_flask_request_count', 'Total number of requests received')
+
 # Rota principal para a página inicial
 html_template = '''
 <!DOCTYPE html>
@@ -49,19 +50,15 @@ html_template = '''
 <body>
     <div id="container">
         <div class="bounce-letters">
-            <span style="animation-delay: 0s;">H</span>
-            <span style="animation-delay: 0.1s;">e</span>
-            <span style="animation-delay: 0.2s;">l</span>
-            <span style="animation-delay: 0.3s;">l</span>
-            <span style="animation-delay: 0.4s;">o</span>
-            <span style="animation-delay: 0.5s;">,</span>
-            <span style="animation-delay: 0.6s;"> </span>
-            <span style="animation-delay: 0.7s;">W</span>
-            <span style="animation-delay: 0.8s;">o</span>
-            <span style="animation-delay: 0.9s;">r</span>
-            <span style="animation-delay: 1s;">l</span>
-            <span style="animation-delay: 1.1s;">d</span>
-            <span style="animation-delay: 1.2s;">!</span>
+            <span style="animation-delay: 0s;">C</span>
+            <span style="animation-delay: 0.1s;">h</span>
+            <span style="animation-delay: 0.2s;">e</span>
+            <span style="animation-delay: 0.3s;">g</span>
+            <span style="animation-delay: 0.4s;">a</span>
+            <span style="animation-delay: 0.5s;">m</span>
+            <span style="animation-delay: 0.6s;">o</span>
+            <span style="animation-delay: 0.7s;">s</span>
+            <span style="animation-delay: 0.8s;">!</span>
         </div>
     </div>
 </body>
@@ -69,6 +66,9 @@ html_template = '''
 '''
 @app.route('/')
 def home():
+    # Increment the request_count metric for each incoming request
+    request_count.inc()
+    
     return render_template_string(html_template)
 
 # Rota para receber métricas personalizadas
