@@ -1,7 +1,9 @@
-from flask import Flask, request
+from flask import Flask, Response
+from prometheus_client import Counter, generate_latest, CollectorRegistry
 
 app = Flask(__name__)
 
+request_count = Counter('gin_flask_request_count', 'Total number of requests received')
 # Rota principal para a página inicial
 @app.route('/')
 def home():
@@ -10,9 +12,11 @@ def home():
 # Rota para receber métricas personalizadas
 @app.route('/metrics')
 def custom_metrics():
-    # Exemplo de métrica personalizada (número de vezes que a rota principal foi acessada)
-    metric_value = 1
-    return f'my_custom_metric {metric_value}'
+    # create a Prometheus registry and register the request_count metric
+    registry = CollectorRegistry()
+    registry.register(request_count)
+    
+    return Response(generate_latest(registry), content_type='text/plain')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
