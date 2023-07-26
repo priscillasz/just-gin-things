@@ -10,3 +10,6 @@ data:
       - job_name: 'prometheus'
         static_configs:
           - targets: ['localhost:9090']
+      - job_name: 'gin-flask'
+        static_configs:
+          - targets: ['gin-flask-service.namespace.svc.cluster.local:5000']

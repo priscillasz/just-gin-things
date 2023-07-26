@@ -10,7 +10,7 @@ html_template = '''
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Efeito Bounce com Diferentes Atrasos</title>
+    <title>GIN - Final</title>
     <style>
         body {
             margin: 0;
@@ -68,7 +68,7 @@ html_template = '''
 def home():
     # Increment the request_count metric for each incoming request
     request_count.inc()
-    
+
     return render_template_string(html_template)
 
 # Rota para receber métricas personalizadas
