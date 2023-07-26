@@ -32,7 +32,24 @@ spec:
         - name: prometheus-data
           emptyDir: {}  # Use emptyDir for storage
 
----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |-
+    global:
+      scrape_interval: 15s
+
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+          - targets: ['localhost:9090']  # This is the self-scrape configuration for Prometheus
+
+      - job_name: 'gin-flask'
+        static_configs:
+          - targets: ['gin-flask-service.namespace.svc.cluster.local:5000']  # Replace with your Flask app's target
+
 apiVersion: v1
 kind: Service
 metadata:
