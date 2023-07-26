@@ -24,6 +24,7 @@ html_template = '''
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -60,6 +61,10 @@ html_template = '''
             <span style="animation-delay: 0.7s;">s</span>
             <span style="animation-delay: 0.8s;">!</span>
         </div>
+
+    <div>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3FPj7V0TGXHNkdxPmMoa1A?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
     </div>
 </body>
 </html>
