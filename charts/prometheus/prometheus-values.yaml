@@ -6,7 +6,7 @@ server:
   scrape_configs:
     - job_name: 'gin-flask' # Nome do trabalho de scraping
       static_configs:
-        - targets: ['gin-flask-service.default.svc.cluster.local:5000']  # Endpoint do seu aplicativo Flask
+        - targets: ['gin-flask-service.default.svc.cluster.local:32382']  # Endpoint do seu aplicativo Flask
       labels:
         app: 'gin-flask'  # Rótulo personalizado para as métricas do seu aplicativo
 
