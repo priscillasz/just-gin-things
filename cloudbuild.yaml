@@ -1,11 +1,11 @@
 steps:
   # build docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/pripy-393601/gin-flask', '.']  # Change the image tag to "gin-flask"
+    args: ['build', '-t', 'gcr.io/pripy-393601/gin-flask', '.']  # image tag: "gin-flask"
 
   # push it to gcr
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/pripy-393601/gin-flask']  # Change the image tag to "gin-flask"
+    args: ['push', 'gcr.io/pripy-393601/gin-flask']  # image tag: "gin-flask"
 
   # deploy it to GKE
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -22,10 +22,11 @@ steps:
       - 'apply'
       - '-f'
       - 'kubernetes/deployment.yaml'  # path para o manifesto kubernetes
+      
     # Redirecionar a saída para um arquivo de log
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Substitua pela sua zona do GKE
-      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Substitua pelo nome do seu cluster GKE
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # GKE zone
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # GKE cluster name
 
  # Apply Prometheus ConfigMap
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -34,8 +35,8 @@ steps:
       - '-f'
       - 'prometheus-config.yaml'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Replace with your GKE zone
-      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Replace with your GKE cluster name
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # GKE zone
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # GKE cluster name
 
  # Apply Prometheus Deployment
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -46,8 +47,8 @@ steps:
       - '-f'
       - 'prometheus-service.yaml'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # Replace with your GKE zone
-      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # Replace with your GKE cluster name
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1'  # GKE zone
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gin-cluster'  # GKE cluster name
 
 options:
   logging: CLOUD_LOGGING_ONLY 
