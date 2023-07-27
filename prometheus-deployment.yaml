@@ -49,4 +49,4 @@ data:
 
       - job_name: 'gin-flask'
         static_configs:
-          - targets: ['gin-flask-service.default.svc.cluster.local:32382']  # Replace with your Flask app's target
+          - targets: ['gin-flask-service.default.svc.cluster.local:5000']  # Replace with your Flask app's target

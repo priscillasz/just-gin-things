@@ -86,4 +86,4 @@ def custom_metrics():
     return Response(generate_latest(registry), content_type='text/plain')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=80)
