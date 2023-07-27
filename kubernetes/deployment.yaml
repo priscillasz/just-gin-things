@@ -16,7 +16,7 @@ spec:
         - name: gin-flask
           image: gcr.io/pripy-393601/gin-flask #:v1.0.0 # imagem Docker do app
           ports:
-            - containerPort: 32382 # Porta em que o aplicativo Flask está escutando
+            - containerPort: 5000 # Porta em que o aplicativo Flask está escutando
           imagePullPolicy: Always  # <-- Add this line to set the imagePullPolicy
           # Defina outras configurações do contêiner, como recursos (CPU, memória), variáveis de ambiente, etc.
 
