@@ -18,7 +18,6 @@ spec:
           ports:
             - containerPort: 5000 # Porta em que o aplicativo Flask está escutando
           imagePullPolicy: Always  # <-- Add this line to set the imagePullPolicy
-          # Defina outras configurações do contêiner, como recursos (CPU, memória), variáveis de ambiente, etc.
 
 apiVersion: v1
 kind: Service

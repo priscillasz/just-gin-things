@@ -17,14 +17,14 @@ spec:
           image: prom/prometheus:v2.30.3  # Update the Prometheus image version
           args:
             - '--config.file=/etc/prometheus/prometheus.yml'
-            - '--storage.tsdb.path=/prometheus'  # Add this line for storage path
+            - '--storage.tsdb.path=/prometheus'  # storage path
           ports:
             - containerPort: 9090
           volumeMounts:
             - name: prometheus-config
               mountPath: /etc/prometheus
             - name: prometheus-data
-              mountPath: /prometheus  # Change the mount path for storage
+              mountPath: /prometheus  # mount path for storage
       volumes:
         - name: prometheus-config
           configMap:
@@ -49,4 +49,4 @@ data:
 
       - job_name: 'gin-flask'
         static_configs:
-          - targets: ['gin-flask-service.default.svc.cluster.local:5000']  # Replace with your Flask app's target
+          - targets: ['gin-flask-service.default.svc.cluster.local:5000']  # flask app service target

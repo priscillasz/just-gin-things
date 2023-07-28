@@ -1,13 +1,6 @@
 # Usar a imagem base do Python
 FROM python:3.9
 
-# Define a versão do kubectl
-#ARG KUBECTL_VERSION=v1.26.5
-
-# Adicionar o kubectl
-# ADD https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
-# RUN chmod +x /usr/local/bin/kubectl
-
 # Diretório de trabalho
 WORKDIR /app
 
